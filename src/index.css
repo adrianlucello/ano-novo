@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import '@fontsource/montserrat/400.css';
+@import '@fontsource/montserrat/500.css';
+@import '@fontsource/montserrat/600.css';
+@import '@fontsource/montserrat/700.css';
+@import '@fontsource/montserrat/900.css';
+
+:root {
+  --primary-gradient: linear-gradient(to right, #0857b3, #54d2e0);
+}
+
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #ffffff;
+  color: #1f2937;
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white shadow-lg border border-gray-100 rounded-2xl;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-[#0857b3] to-[#54d2e0] bg-clip-text text-transparent;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-xl hover:scale-105;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 1s ease-in forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-bounce {
+    animation: bounce 3s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(-25px);
+      animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
+    50% {
+      transform: translateY(0);
+      animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
+  }
+
+  .animate-pulse {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: .7;
+    }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-float span {
+    display: inline-block;
+    animation: float 3s ease-in-out infinite;
+    animation-delay: calc(var(--float-delay, 0) * 0.5s);
+  }
+
+  .animate-float span:nth-child(1) { --float-delay: 0; }
+  .animate-float span:nth-child(2) { --float-delay: 1; }
+  .animate-float span:nth-child(3) { --float-delay: 2; }
+  .animate-float span:nth-child(4) { --float-delay: 3; }
+  .animate-float span:nth-child(5) { --float-delay: 4; }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px) scale(1.1);
+    }
+  }
+}
